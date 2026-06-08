@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>חצי מילה</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#4CAF50;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.instructions{
+background:white;
+color:black;
+padding:20px;
+border-radius:20px;
+font-size:20px;
+line-height:1.7;
+margin-bottom:20px;
+}
+
+.wordBox{
+background:white;
+color:#111;
+font-size:58px;
+font-weight:bold;
+padding:30px;
+border-radius:20px;
+margin:20px auto;
+max-width:600px;
+border:5px solid #111;
+}
+
+.timer{
+font-size:72px;
+font-weight:bold;
+margin-top:20px;
+}
+
+.endMessage{
+font-size:36px;
+font-weight:bold;
+margin-top:20px;
+color:#FFD700;
+}
+
+@media(max-width:600px){
+
+h1{
+font-size:34px;
+}
+
+.instructions{
+font-size:18px;
+}
+
+.wordBox{
+font-size:40px;
+padding:20px;
+}
+
+.timer{
+font-size:54px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🧩 חצי מילה</h1>
+
+<div class="instructions">
+
+המילה הסודית גלויה לנציג בלבד.<br>
+על חברי הקבוצה לנחש את המילה המלאה.<br>
+מותר לנציג לתת רמז אחד בכל פעם.<br>
+לאחר כל ניחוש נכון ממשיכים לניחוש הבא על הדף.<br><br>
+
+🏆 הקבוצה שתצליח לנחש הכי הרבה מילים בדקה אחת תנצח!
+
+</div>
+
+<div class="wordBox" id="wordBox"></div>
+
+<div class="timer" id="timer">
+01:00
+</div>
+
+<div class="endMessage" id="endMessage"></div>
+
+</div>
+
+<script>
+
+const words = [
+
+"כדורגל",
+"כדורסל",
+"מסעדה",
+"פיצה",
+"המבורגר",
+"שוקולד",
+"גלידה",
+"פלאפון",
+"מחשב",
+"מקלדת",
+
+"עכבר",
+"מסך",
+"שולחן",
+"כיסא",
+"חלון",
+"דלת",
+"מקרר",
+"תנור",
+"טלפון",
+"מצלמה",
+
+"מטרייה",
+"אופניים",
+"מכונית",
+"אוטובוס",
+"רכבת",
+"מטוס",
+"ספינה",
+"חופשה",
+"מלון",
+"חוף",
+
+"ים",
+"הר",
+"יער",
+"מדבר",
+"שמש",
+"ירח",
+"כוכב",
+"ענן",
+"גשם",
+"רוח",
+
+"ספר",
+"מחברת",
+"עיפרון",
+"מחק",
+"שעון",
+"מעלית",
+"תרנגולת",
+"כלב",
+"חתול",
+"דולפין"
+
+];
+
+const chosenWord =
+words[Math.floor(Math.random() * words.length)];
+
+document.getElementById("wordBox").innerHTML =
+chosenWord;
+
+let time = 60;
+
+const timer = setInterval(() => {
+
+time--;
+
+let minutes = Math.floor(time / 60);
+let seconds = time % 60;
+
+document.getElementById("timer").innerHTML =
+String(minutes).padStart(2,"0") +
+":" +
+String(seconds).padStart(2,"0");
+
+if(time <= 0){
+
+clearInterval(timer);
+
+document.getElementById("timer").innerHTML =
+"00:00";
+
+document.getElementById("endMessage").innerHTML =
+"⏰ הזמן נגמר!";
+
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>
